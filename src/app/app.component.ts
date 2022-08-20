@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivityService as Service } from 'src/app/_services/activity.service';
 
 @Component({
   selector: 'app-root',
@@ -7,14 +6,11 @@ import { ActivityService as Service } from 'src/app/_services/activity.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'pelion';
 
-  constructor(private service: Service) {}
+  constructor() {}
   
   ngOnInit(): void {
-    this.service.getActivity().subscribe(res => {
-      console.log(res);
-    });
+
   }
 
 }

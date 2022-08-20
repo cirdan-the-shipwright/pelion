@@ -1,1 +1,15 @@
-<app-activity-form></app-activity-form>
+<main class="wrapper">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                Activity Finder
+            </mat-card-title>
+            <mat-card-subtitle>
+                Enter criteria to find your perfect activity or just go ahead and hit Find an Activity to get any random one.
+            </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <app-activity-form (submitForm)="getActivity($event)"></app-activity-form>
+        </mat-card-content>
+    </mat-card>
+</main>

@@ -1,3 +1,31 @@
-.full-width {
-  width: 100%;
+.form {
+  display: flex;
+  flex-direction: column;
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+    flex: 100%;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .form {
+    flex-direction: row;
+
+    &__group {
+      flex: 50%;
+      margin-right: 8px;
+    }
+  }
+}
+
+@media screen and (min-width: 720px) {
+  .form {
+    &__group {
+      justify-content: space-around;
+      flex-direction: row;
+      margin-right: 0;
+    }
+  }
 }
