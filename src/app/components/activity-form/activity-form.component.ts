@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IActivityRequest as IModel } from 'src/app/models/activity.interface';
 
 
@@ -15,9 +15,9 @@ export class ActivityFormComponent implements OnInit {
 
   searchForm = new FormGroup({
     type: new FormControl(''),
-    participants: new FormControl(''),
-    price: new FormControl(''),
-    accessibility: new FormControl('')
+    participants: new FormControl(null, Validators.min(1)),
+    price: new FormControl(null, [Validators.min(0.0), Validators.max(1.0)]),
+    accessibility: new FormControl(null, [Validators.min(0.0), Validators.max(1.0)])
   })
   constructor(
   ) { }

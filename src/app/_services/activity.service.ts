@@ -20,20 +20,21 @@ export class ActivityService {
     return this.http.get<IModel>(`${this.url}/activity?key=${key}`);
   }
 
-  getActivityByQuery(queryModel: IRequestModel): any {
+  getActivityByQuery(queryModel: IRequestModel): Observable<IModel> {
     const queryParams = this.buildQuery(queryModel);
     return this.http.get<IModel>(`${this.url}/activity?${queryParams}`);
   }
 
   private buildQuery(queryModel: IRequestModel): string {
     let queryParams = '';
-    if (!!queryModel.accessibility)
+
+    if (queryModel.accessibility === 0 || !!queryModel.accessibility)
       queryParams += `accessibility=${queryModel.accessibility}&`;
     
     if (!!queryModel.participants)
       queryParams += `participants=${queryModel.participants}&`;
     
-    if (!!queryModel.price)
+    if (queryModel.price === 0 || !!queryModel.price)
       queryParams += `price=${queryModel.price}&`;
 
     if (!!queryModel.type)

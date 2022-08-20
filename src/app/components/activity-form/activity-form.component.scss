@@ -9,6 +9,15 @@
   }
 }
 
+.form-actions {
+  display: flex;
+  flex-direction: column;
+
+  &__button {
+    margin-bottom: 8px;
+  }
+}
+
 @media screen and (min-width: 480px) {
   .form {
     flex-direction: row;
@@ -18,6 +27,16 @@
       margin-right: 8px;
     }
   }
+
+  .form-actions {
+    flex-direction: row;
+  
+    &__button {
+      flex: 50%;
+      margin-right: 8px;
+    }
+  }
+  
 }
 
 @media screen and (min-width: 720px) {
@@ -28,4 +47,21 @@
       margin-right: 0;
     }
   }
+
+  .form-actions {
+    justify-content: end;
+    
+    &__button {
+      flex: none;
+    }
+  }
+}
+
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
 }

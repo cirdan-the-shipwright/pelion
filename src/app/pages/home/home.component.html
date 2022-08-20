@@ -12,4 +12,23 @@
             <app-activity-form (submitForm)="getActivity($event)"></app-activity-form>
         </mat-card-content>
     </mat-card>
+
+    <section #result>
+        <mat-card *ngIf="activity">
+            <mat-card-header>
+                <mat-card-title>
+                    Your Activity
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <section class="result">
+                    <div class="result__icon">
+                        <mat-icon class="icon-size" aria-hidden="false" aria-label="Example home icon">{{ iconName }}</mat-icon>
+                    </div>
+                    <h2>{{ activity.activity }}</h2>
+                    {{ activity.link }}
+                </section>
+            </mat-card-content>
+        </mat-card>
+    </section>
 </main>
