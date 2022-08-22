@@ -1,6 +1,6 @@
 # Pelion
 ## Deployment
-This was deployed to GitHub Pages
+This was deployed to GitHub Pages but due to security seems to only work on FireFox when calling BoredAPI.
 https://cirdan-the-shipwright.github.io/pelion/
 
 ## Setup
