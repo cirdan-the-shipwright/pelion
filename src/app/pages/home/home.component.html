@@ -9,7 +9,7 @@
             </mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-            <app-activity-form (submitForm)="getActivity($event)"></app-activity-form>
+            <app-activity-form [accessibilities]="accessibilities"  [prices]="prices" [types]="types" (submitForm)="getActivity($event)"></app-activity-form>
         </mat-card-content>
     </mat-card>
 

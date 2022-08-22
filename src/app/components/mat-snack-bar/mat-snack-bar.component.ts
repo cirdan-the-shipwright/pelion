@@ -11,6 +11,10 @@ export class MatSnackBarComponent  {
 
 	constructor(public _snackBar: MatSnackBar) {}
 
+  /**
+   * Opens the snackbar.
+   * @param message Message to display in Snackbar
+   */
 	openSnackBar(message: string) {
       this._snackBar.open(message, 'Dismiss', {
         duration: 5000

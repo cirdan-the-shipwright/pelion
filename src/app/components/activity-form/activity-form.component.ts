@@ -1,6 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { IActivityRequest as IModel } from 'src/app/models/activity.interface';
+import { IAccessibility, IFormModel, IPrice, IType } from 'src/app/models/activity.interface';
 
 
 @Component({
@@ -9,15 +9,16 @@ import { IActivityRequest as IModel } from 'src/app/models/activity.interface';
   styleUrls: ['./activity-form.component.scss']
 })
 export class ActivityFormComponent implements OnInit {
+  @Input() types: IType[];
+  @Input() prices: IPrice[];
+  @Input() accessibilities: IAccessibility[];
   @Output() submitForm = new EventEmitter();
 
-  activities: string[] = ['education', 'recreational', 'social', 'diy', 'charity', 'cooking', 'relaxation', 'music', 'busywork'];
-
   searchForm = new FormGroup({
-    type: new FormControl(''),
+    typeId: new FormControl(''),
     participants: new FormControl(null, Validators.min(1)),
-    price: new FormControl(null, [Validators.min(0.0), Validators.max(1.0)]),
-    accessibility: new FormControl(null, [Validators.min(0.0), Validators.max(1.0)])
+    priceId: new FormControl(null),
+    accessibilityId: new FormControl(null)
   })
   constructor(
   ) { }
@@ -25,12 +26,18 @@ export class ActivityFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Clears the form.
+   */
   clear() {
     this.searchForm.reset();
   }
 
+  /**
+   * Calls parent component with form values.
+   */
   submit() {
-    const request: IModel = this.searchForm.value;
+    const request: IFormModel = this.searchForm.value;
     this.submitForm.emit(request);
   }
 }

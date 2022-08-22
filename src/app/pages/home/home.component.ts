@@ -1,69 +1,53 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivityService as Service } from 'src/app/_services/activity.service';
-import { IActivity, IActivityRequest as IModel } from 'src/app/models/activity.interface';
+import { IAccessibility, IActivity, IActivityRequest, IFormModel, IPrice, IType } from 'src/app/models/activity.interface';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   @ViewChild('result') el:ElementRef;
   activity: IActivity;
   iconName = 'home';
+  types: IType[] = [];
+  prices: IPrice[] = [];
+  accessibilities: IAccessibility[] = [];
 
   constructor(
     private service: Service
   ) { }
 
-  getActivity(event: IModel) {
-    this.service.getActivityByQuery(event).subscribe(res => {
+  ngOnInit(): void {
+    this.service.getTools().subscribe(res => { 
+      this.types = res.types;
+      this.prices = res.prices;
+      this.accessibilities = res.accessibilities;
+    });
+  }
+
+  /**
+   * Retrieves activity data and displays on the page.
+   * @param event Form values
+   */
+  getActivity(event: IFormModel) {
+    const model: IActivityRequest = {
+      accessibilityMin: !!event.accessibilityId ? this.accessibilities.find(x => x.id === event.accessibilityId).min : 0,
+      accessibilityMax: !!event.accessibilityId ? this.accessibilities.find(x => x.id === event.accessibilityId).max : 0,
+      participants: event.participants,
+      priceMin: !!event.priceId ? this.prices.find(x => x.id === event.priceId).min : 0,
+      priceMax: !!event.priceId ? this.prices.find(x => x.id === event.priceId).max : 0,
+      type: !!event.typeId ? this.types.find(x => x.id === event.typeId).value : ''
+    };
+
+    this.service.getActivityByQuery(model).subscribe(res => {
       if (res['error']) {
         return;
       }
 
-      switch(res.type) { 
-        case 'education': { 
-           this.iconName = 'library_books';
-           break; 
-        } 
-        case 'recreational': { 
-          this.iconName = 'hiking';
-          break; 
-        }
-        case 'social': { 
-          this.iconName = 'groups';
-          break; 
-        }
-        case 'diy': { 
-          this.iconName = 'engineering';
-          break; 
-        }
-        case 'charity': { 
-          this.iconName = 'food_bank';
-          break; 
-        }
-        case 'cooking': { 
-          this.iconName = 'microwave';
-          break; 
-        }
-        case 'relaxation': { 
-          this.iconName = 'self_improvement';
-          break; 
-        }
-        case 'music': { 
-          this.iconName = 'headphones';
-          break; 
-        }
-        case 'soap': { 
-          this.iconName = 'busywork';
-          break; 
-        }
-        default: { 
-           this.iconName = 'home';
-           break; 
-        } 
-     } 
+      this.iconName = !!event.typeId ? this.types.find(x => x.id === event.typeId).icon : this.iconName;
+
       this.activity = res;
       this.el.nativeElement.scrollIntoView({behavior: 'smooth'});
     });
