@@ -1,4 +1,8 @@
 # Pelion
+## Deployment
+This was deployed to GitHub Pages but due to the CORS policy it wont call BoredAPI
+https://cirdan-the-shipwright.github.io/pelion/
+
 ## Setup
 Run `npm i -g @angular/cli@12.2.17` in cmd.
 Navigate to inside the `pelion` folder within cmd and run `npm i` and then `ng serve`
