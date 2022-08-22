@@ -51,9 +51,9 @@ export class ActivityService {
    */
   getTools(): Observable<ITools> {
     return forkJoin({
-      types: this.http.get<IType[]>('/assets/types.json'),
-      prices: this.http.get<IPrice[]>('/assets/prices.json'),
-      accessibilities: this.http.get<IPrice[]>('/assets/accessibilities.json')
+      types: this.http.get<IType[]>('assets/types.json'),
+      prices: this.http.get<IPrice[]>('assets/prices.json'),
+      accessibilities: this.http.get<IPrice[]>('assets/accessibilities.json')
     });
   }
 
