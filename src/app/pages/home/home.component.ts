@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
         return;
       }
 
-      this.iconName = !!event.typeId ? this.types.find(x => x.id === event.typeId).icon : this.iconName;
+      this.iconName = this.types.find(x => x.value === res.type).icon;
 
       this.activity = res;
       this.el.nativeElement.scrollIntoView({behavior: 'smooth'});
