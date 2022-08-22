@@ -1,6 +1,7 @@
 # Pelion
 ## Deployment
-This was deployed to GitHub Pages but due to security seems to only work on FireFox when calling BoredAPI.
+This was deployed to GitHub Pages but the user must call `https://www.boredapi.com/api/activity` directly from browser first and accept risks as it is HTTP before 
+it can be called from within the app on GitHub pages.
 https://cirdan-the-shipwright.github.io/pelion/
 
 ## Setup
