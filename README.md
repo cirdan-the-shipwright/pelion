@@ -1,6 +1,6 @@
 # Pelion
 ## Deployment
-This was deployed to GitHub Pages but due to the CORS policy it wont call BoredAPI
+This was deployed to GitHub Pages
 https://cirdan-the-shipwright.github.io/pelion/
 
 ## Setup
